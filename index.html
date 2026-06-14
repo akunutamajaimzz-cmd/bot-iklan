@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaimzz App</title>
-    <!-- Memuat SDK AdsGram -->
+    <!-- SDK AdsGram -->
     <script src="https://sad.adsgram.ai/js/adsgram.min.js"></script>
     <style>
         body {
@@ -15,17 +15,19 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #f7f7f7;
         }
         button {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 20px 40px;
+            font-size: 20px;
             cursor: pointer;
             background-color: #0088cc;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        button:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -34,19 +36,23 @@
     <button id="btn">Tonton Iklan</button>
 
     <script>
-        // Inisialisasi Adsgram dengan BlockId yang benar
+        // Inisialisasi dengan Block ID yang benar
         const AdController = window.Adsgram.init({ blockId: "int-35138" });
 
         const btn = document.getElementById("btn");
         btn.addEventListener("click", () => {
+            // Memberi tahu kalau tombol sudah ditekan
+            btn.innerText = "Memuat...";
+            
             AdController.show()
                 .then((result) => {
-                    // Iklan berhasil ditonton
-                    console.log("Iklan selesai ditonton");
+                    btn.innerText = "Tonton Iklan";
+                    console.log("Iklan sukses");
                 })
                 .catch((result) => {
-                    // Iklan gagal atau dilewati
-                    console.log("Iklan gagal atau dilewati");
+                    btn.innerText = "Tonton Iklan";
+                    // Jika gagal, muncul kotak notifikasi di layar HP
+                    alert("Iklan gagal dimuat: " + result);
                 });
         });
     </script>
