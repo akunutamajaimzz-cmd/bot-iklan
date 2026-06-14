@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://sad.adsgram.ai/js/adsgram.min.js"></script>
+</head>
+<body style="display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+    <button id="btn" style="padding:20px; font-size:20px;">Tonton Iklan</button>
+    <script>
+        const ad = window.Adsgram.init({ blockId: "int-35138" });
+        document.getElementById("btn").onclick = () => {
+            ad.show().catch(err => alert("Error: " + err));
+        };
+    </script>
+</body>
+</html>
