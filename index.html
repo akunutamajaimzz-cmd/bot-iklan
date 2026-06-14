@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Iklan Berhadiah</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+</head>
+<body style="background-color: #182533; color: white; text-align: center; font-family: Arial, sans-serif; padding-top: 50px;">
+
+    <h3>Menyiapkan Video Iklan...</h3>
+    <p>Mohon tunggu sebentar.</p>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        // Sementara pakai ID testing bawaan AdsGram agar iklan bisa dicoba dulu
+        const AdController = window.Adsgram.init({ blockId: "2666" });
+
+        AdController.show().then((result) => {
+            alert("🎉 Terima kasih! Kamu berhasil menonton iklan.");
+            tg.sendData("IKLAN_SELESAI");
+            tg.close();
+        }).catch((result) => {
+            alert("❌ Iklan gagal dimuat atau dilewati sebelum selesai.");
+            tg.close();
+        });
+    </script>
+</body>
+</html>
